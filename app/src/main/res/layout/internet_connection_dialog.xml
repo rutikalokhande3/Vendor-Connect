@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_marginTop="50dp">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:lottie_autoPlay="true"
+        app:lottie_speed="1"
+        app:lottie_rawRes="@raw/caution"
+        app:lottie_loop="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Opps !"
+        android:textColor="@color/yellowish"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="40dp"
+        android:layout_marginTop="-70dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Internet Connectiom."
+        android:textColor="@color/dark_red"
+        android:textStyle="normal"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="20dp"
+        android:layout_margin="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please Check Your Connection and try again."
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="20dp"
+        android:layout_marginTop="0dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:text="RETRY"
+        android:textSize="20dp"
+        android:id="@+id/btnRetry"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/internet_btn_bg"/>
+
+
+
+
+
+
+
+
+
+</LinearLayout>

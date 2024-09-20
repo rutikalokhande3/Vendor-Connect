@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="golden_1">#C7AE6A</color>
+    <color name="golden_2">#b99a45</color>
+    <color name="golden_3">#d5c28f</color>
+    <color name="pink">#9C27B0</color>
+    <color name="red">#FF4076</color>
+    <color name="yellow">#FFD640</color>
+    <color name="blue">#304FFE</color>
+    <color name="grey">#808080</color>
+    <color name="light_purple">#CBC3E3</color>
+    <color name="violet">#0009ff</color>
+    <color name="light_pink">#f0f</color>
+    <color name="sky_blue">#00c3ff</color>
+    <color name="dark_pink">#ff008d</color>
+    <color name="yellowish">#e0af1f</color>
+    <color name="Red_plum">#db5a6b</color>
+    <color name="flower_girl">#f498ad</color>
+    <color name="moonstone">#3aa8c1</color>
+    <color name="rich_black">#010203</color>
+    <color name="dark_red">#ff0006</color>
+    <color name="timber0">#fc00ff</color>
+    <color name="timber1">#00dbde</color>
+    <color name="trans_green">#6613FA03</color>
+    <color name="brown">#964B00</color>
+    <color name="orange">#ffA500</color>
+    <color name="dark_orange">#FF8C00</color>
+    <color name="full_black">#000000</color>
+    <color name="pink1">#FFE91E63</color>
+    <color name="pink2">#FFEC407A</color>
+    <color name="blue2">#000022</color>
+    <color name="golden">#000022</color>
+
+
+</resources>

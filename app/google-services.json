@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "631706709187",
+    "project_id": "tataconnect-829b4",
+    "storage_bucket": "tataconnect-829b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631706709187:android:54f0ef902401468ad30676",
+        "android_client_info": {
+          "package_name": "com.rutu.tataconnect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXEnuqZXoCM5-sWhIbUsEefGRe2dUgU5A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
