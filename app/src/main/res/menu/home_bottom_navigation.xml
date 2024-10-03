@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/HomeBtmNavigationHome"
+        android:title="Home"
+        android:icon="@drawable/icon_home"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/HomeBtmNavigationCategory"
+        android:title="Category"
+        android:icon="@drawable/icon_category"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/HomeBtmNavigationMyOrder"
+        android:title="Category"
+        android:icon="@drawable/icon_order"
+        app:showAsAction="always"/>
+
+
+
+</menu>

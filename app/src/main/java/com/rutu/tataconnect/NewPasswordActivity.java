@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.rutu.tataconnect.Common.Urls;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -73,7 +74,7 @@ public class NewPasswordActivity extends AppCompatActivity {
         params.put("mobile",strMobileNum);
         params.put("password",newpass.getText().toString());
 
-        client.post("http://192.168.204.54:80/TataConnnectAPI/userForgetPassword.php",params,
+        client.post(Urls.forgetPasswordWebService,params,
               new JsonHttpResponseHandler()
         {
             @Override
