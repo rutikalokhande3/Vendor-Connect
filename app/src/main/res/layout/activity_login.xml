@@ -14,7 +14,7 @@
         android:id="@+id/loginLobo"
         android:layout_width="300dp"
         android:layout_height="270dp"
-        android:src="@drawable/tclogobasket"
+        android:src="@drawable/vcloginlobo"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="2dp"/>
 

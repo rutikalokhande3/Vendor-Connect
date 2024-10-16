@@ -29,6 +29,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.rutu.tataconnect.Common.Urls;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -167,7 +168,7 @@ public class OTPVerifyActivity extends AppCompatActivity {
         params.put("username",strUsername);
         params.put("password",strPassword);
 
-        client.post("http://192.168.204.54:80/TataConnnectAPI/registertbl.php",params,
+        client.post(Urls.registerUserWebService,params,
                 new JsonHttpResponseHandler()
                 {
                     @Override

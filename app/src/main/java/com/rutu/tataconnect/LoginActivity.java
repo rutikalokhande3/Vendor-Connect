@@ -31,6 +31,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.rutu.tataconnect.Common.NetworkChangeListener;
+import com.rutu.tataconnect.Common.Urls;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -169,7 +170,7 @@ public class LoginActivity extends AppCompatActivity
         params.put("username", username.getText().toString());
         params.put("password",password.getText().toString());
 
-        client.post("http://192.168.204.54:80/TataConnnectAPI/userLogin.php",params,new JsonHttpResponseHandler()
+        client.post(Urls.loginUserWebService,params,new JsonHttpResponseHandler()
                 {
 
                     @Override
