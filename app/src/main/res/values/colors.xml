@@ -32,6 +32,9 @@
     <color name="pink2">#FFEC407A</color>
     <color name="blue2">#000022</color>
     <color name="golden">#000022</color>
+    <color name="purple">#7B53F8</color>
+    <color name="gray">#808080</color>
+    <color name="background">#F9F9F9</color>
 
 
 </resources>

@@ -3,8 +3,10 @@ package com.rutu.tataconnect;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -53,13 +55,19 @@ public class LoginActivity extends AppCompatActivity
 
     GoogleSignInOptions googleSignInOptions;
     GoogleSignInClient googleSignInClient;
-    AppCompatButton btnSignGoogle;;
+    AppCompatButton btnSignGoogle;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+        editor = preferences.edit();
       
         ivlogo = findViewById(R.id.loginLobo);
         signUp = findViewById(R.id.btnSignUp);
@@ -185,9 +193,11 @@ public class LoginActivity extends AppCompatActivity
                           {
                               progressDialog.dismiss();
                               Intent i =  new Intent(LoginActivity.this,HomeActivity.class);
+                              editor.putString("username",username.getText().toString()).commit();
                               startActivity(i);
                               Toast.makeText(LoginActivity.this,"Login Successfully",Toast.LENGTH_SHORT)
                                       .show();
+                              finish();
                           }
                           else
                           {

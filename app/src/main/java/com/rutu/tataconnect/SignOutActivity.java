@@ -22,20 +22,20 @@ import com.google.android.gms.tasks.Task;
 
 public class SignOutActivity extends AppCompatActivity {
 
-    TextView SOname,SOemail;
+
     AppCompatButton signout;
 
     GoogleSignInOptions googleSignInOptions;
     GoogleSignInClient googleSignInClient;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sign_out);
 
-        SOname = findViewById(R.id.SignName);
-        SOemail = findViewById(R.id.SignEmail);
+       /*
         signout = findViewById(R.id.SignOutGoogle);
 
         googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
@@ -63,6 +63,8 @@ public class SignOutActivity extends AppCompatActivity {
                 }
             });
         }
-
+       */
     }
+
+
 }

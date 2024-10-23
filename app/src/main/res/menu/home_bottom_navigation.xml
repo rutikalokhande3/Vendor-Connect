@@ -16,7 +16,7 @@
 
     <item
         android:id="@+id/HomeBtmNavigationMyOrder"
-        android:title="Category"
+        android:title="Order"
         android:icon="@drawable/icon_order"
         app:showAsAction="always"/>
 
