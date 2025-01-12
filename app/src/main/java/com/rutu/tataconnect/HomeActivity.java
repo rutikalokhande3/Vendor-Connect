@@ -24,7 +24,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        bottomNavigationView = findViewById(R.id.BottomNavigation);
+        bottomNavigationView = findViewById(R.id.homeBottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.HomeBtmNavigationHome);
 
@@ -69,7 +69,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
         } else if (menuItem.getItemId() == R.id.HomeBtmNavigationMyOrder)
         {
-            getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout,H1).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout,M1).commit();
         }
 
 

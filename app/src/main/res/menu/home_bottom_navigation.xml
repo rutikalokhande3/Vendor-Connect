@@ -20,6 +20,4 @@
         android:icon="@drawable/icon_order"
         app:showAsAction="always"/>
 
-
-
 </menu>

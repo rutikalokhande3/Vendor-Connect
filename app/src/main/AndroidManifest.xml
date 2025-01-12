@@ -16,6 +16,9 @@
         android:theme="@style/Theme.TataConnect"
         tools:targetApi="31">
         <activity
+            android:name=".CategoryWiseProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".MyProfileActivity"
             android:exported="false" />
         <activity

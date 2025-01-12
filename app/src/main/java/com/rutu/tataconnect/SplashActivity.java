@@ -31,22 +31,7 @@ public class SplashActivity extends AppCompatActivity
         setContentView(R.layout.activity_splash);
 
 
-        vd = findViewById(R.id.vvEducationVideo);
-       // String videoPath = "android.resource://"+getPackageName() +"/raw/tcsplash";
-        String videoPath = "android.resource://" + getPackageName() + "/raw/tcsplash";
 
-//        Uri videoUri = Uri.parse(R.raw.tcsplash);
-
-        Uri videoUri = Uri.parse(videoPath);
-
-
-
-        vd.setVideoURI(videoUri);
-
-        vd.start();
-
-       // MediaController mediaController = new MediaController(SplashActivity.this);
-       // vd.setMediaController(mediaController);
 
         Handler h=new Handler();
         h.postDelayed(new Runnable() {

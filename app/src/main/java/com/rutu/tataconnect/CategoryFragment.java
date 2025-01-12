@@ -2,6 +2,7 @@ package com.rutu.tataconnect;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.rutu.tataconnect.Common.Urls;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +29,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class CategoryFragment extends Fragment {
 
+    SearchView searchCategory;
     ListView lvMultipleCategory;
     TextView tvNoCategory;
 
@@ -41,19 +44,59 @@ public class CategoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_category, container, false);
 
         pojoGetAllCategories = new ArrayList<>();
+        searchCategory = view.findViewById(R.id.svCategoryFragment);
         lvMultipleCategory = view.findViewById(R.id.lvCategoryFragmentMultipltCategory);
         tvNoCategory = view.findViewById(R.id.tvNoCategory);
 
+
+searchCategory.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        searchCategory(query);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String query) {
+        searchCategory(query);
+        return false;
+    }
+});
         getAllCategory();
 
         return view;
+    }
+
+    private void searchCategory(String query)
+    {
+        List<POJOGetAllCategory> tempCategory =new ArrayList<>();
+        tempCategory.clear();
+
+        for (POJOGetAllCategory obj:pojoGetAllCategories)
+        {
+            if(obj.getCategoryName().toUpperCase().contains(query.toUpperCase()))
+            {
+                tempCategory.add(obj);
+            }
+            else
+            {
+                tvNoCategory.setVisibility(View.VISIBLE);
+            }
+
+            adapterGetAllCategoryDetails = new AdapterGetAllCategoryDetails(tempCategory,
+                    getActivity());
+            lvMultipleCategory.setAdapter(adapterGetAllCategoryDetails);
+
+
+        }
+
     }
 
     private void getAllCategory() {
         AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
         RequestParams params = new RequestParams();
 
-        asyncHttpClient.post("http://192.168.98.54:80/TataConnnectAPI/getAllCategoryDetails.php",
+        asyncHttpClient.post(Urls.getAllCategoryDetailsWebService,
                                   params,
                                   new JsonHttpResponseHandler(){
                                       @Override

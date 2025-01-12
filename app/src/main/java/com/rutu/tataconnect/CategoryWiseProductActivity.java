@@ -1,0 +1,87 @@
+package com.rutu.tataconnect;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
+
+public class CategoryWiseProductActivity extends AppCompatActivity {
+
+    SearchView searchCategoryWiseProduct;
+    ListView lvCategoryWiseProduct;
+    TextView tvNoProductAvailable;
+
+    String strCategoryName;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_category_wise_product);
+        searchCategoryWiseProduct = findViewById(R.id.svCategoryWiseProductSearchProduct);
+        lvCategoryWiseProduct = findViewById(R.id.lvCategoryWiseProductListofProduct);
+        tvNoProductAvailable = findViewById(R.id.tvCategoryWiseProductNoProductAvailable);
+
+        strCategoryName = getIntent().getStringExtra("categoryname");
+
+        getCategoryWiseProductList();
+
+    }
+
+    private void getCategoryWiseProductList()
+    {
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+
+        params.put("categoryname",strCategoryName);
+
+        client.post("http://192.168.191.54:80/TataConnnectAPI/categoryWiseProduct.php",params,new
+                JsonHttpResponseHandler(){
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        super.onSuccess(statusCode, headers, response);
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("getCategoryWiseProduct");
+                            if (jsonArray.isNull(0))
+                            {
+                                lvCategoryWiseProduct.setVisibility(View.GONE);
+                                tvNoProductAvailable.setVisibility(View.VISIBLE);
+                            }
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        super.onFailure(statusCode, headers, throwable, errorResponse);
+                        Toast.makeText(CategoryWiseProductActivity.this,"Server Error",Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
+
+        );
+
+    }
+
+}
