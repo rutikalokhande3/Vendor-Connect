@@ -24,8 +24,8 @@ public class ConfirmRegisterMobNoActivity extends AppCompatActivity {
     AppCompatButton btnNxt;
 
     ProgressDialog progressDialog;
-
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
