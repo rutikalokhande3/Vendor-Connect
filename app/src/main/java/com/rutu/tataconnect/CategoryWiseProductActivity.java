@@ -21,6 +21,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cz.msebera.android.httpclient.Header;
 
 public class CategoryWiseProductActivity extends AppCompatActivity {
@@ -31,6 +34,9 @@ public class CategoryWiseProductActivity extends AppCompatActivity {
 
     String strCategoryName;
 
+    List<POJOCategoryWiseProduct> pojoCategoryWiseProductList;
+    AdapterCategoryWiseProduct adapterCategoryWiseProduct;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,8 @@ public class CategoryWiseProductActivity extends AppCompatActivity {
         searchCategoryWiseProduct = findViewById(R.id.svCategoryWiseProductSearchProduct);
         lvCategoryWiseProduct = findViewById(R.id.lvCategoryWiseProductListofProduct);
         tvNoProductAvailable = findViewById(R.id.tvCategoryWiseProductNoProductAvailable);
+
+        pojoCategoryWiseProductList = new ArrayList<>();
 
         strCategoryName = getIntent().getStringExtra("categoryname");
 
@@ -54,7 +62,7 @@ public class CategoryWiseProductActivity extends AppCompatActivity {
 
         params.put("categoryname",strCategoryName);
 
-        client.post("http://192.168.191.54:80/TataConnnectAPI/categoryWiseProduct.php",params,new
+        client.post("http://192.168.108.54:80/TataConnnectAPI/categoryWiseProduct.php",params,new
                 JsonHttpResponseHandler(){
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -66,6 +74,30 @@ public class CategoryWiseProductActivity extends AppCompatActivity {
                                 lvCategoryWiseProduct.setVisibility(View.GONE);
                                 tvNoProductAvailable.setVisibility(View.VISIBLE);
                             }
+                            for( int i = 0 ; i<jsonArray.length(); i++)
+                            {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String strid = jsonObject.getString("id");
+                                String strcategoryname = jsonObject.getString("categoryname");
+                                String strshopname = jsonObject.getString("shopname");
+                                String strproductimage = jsonObject.getString("productimage");
+                                String strproductname = jsonObject.getString("productname");
+                                String strproductprice = jsonObject.getString("productprice");
+                                String strproductrating = jsonObject.getString("productrating");
+                                String strproductoffer = jsonObject.getString("productoffer");
+
+                                pojoCategoryWiseProductList.add(new POJOCategoryWiseProduct(strid,strcategoryname,
+                                                             strshopname,strproductimage,strproductname,
+                                                              strproductprice,strproductrating,strproductoffer));
+
+                            }
+
+                            adapterCategoryWiseProduct = new AdapterCategoryWiseProduct(pojoCategoryWiseProductList,
+                                                         CategoryWiseProductActivity.this);
+
+                            lvCategoryWiseProduct.setAdapter(adapterCategoryWiseProduct);
+
+
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
