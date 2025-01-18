@@ -37,7 +37,6 @@ public class CategoryWiseProductActivity extends AppCompatActivity {
     List<POJOCategoryWiseProduct> pojoCategoryWiseProductList;
     AdapterCategoryWiseProduct adapterCategoryWiseProduct;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +51,39 @@ public class CategoryWiseProductActivity extends AppCompatActivity {
         strCategoryName = getIntent().getStringExtra("categoryname");
 
         getCategoryWiseProductList();
+
+        searchCategoryWiseProduct.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                searchProductbyCategory(s);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                searchProductbyCategory(s);
+                return false;
+            }
+        });
+
+    }
+
+    private void searchProductbyCategory(String s) {
+        List<POJOCategoryWiseProduct> templist = new ArrayList<>();
+        templist.clear();
+
+        for(POJOCategoryWiseProduct obj:pojoCategoryWiseProductList) {
+            if (obj.getCategoryname().toUpperCase().contains(s.toUpperCase()) ||
+                    obj.getProductname().toUpperCase().contains(s.toUpperCase()) ||
+                    obj.getShopname().toUpperCase().contains(s.toUpperCase()) ||
+                    obj.getProductprice().toUpperCase().contains(s.toUpperCase()) ||
+                    obj.getCategoryname().toUpperCase().contains((s.toUpperCase()))) {
+                templist.add(obj);
+            }
+        }
+            adapterCategoryWiseProduct = new AdapterCategoryWiseProduct(templist, this);
+            lvCategoryWiseProduct.setAdapter(adapterCategoryWiseProduct);
+
 
     }
 

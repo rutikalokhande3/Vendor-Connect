@@ -20,10 +20,10 @@
         android:background="@drawable/et_bg_shape"/>
 
     <ListView
+        android:id="@+id/lvCategoryWiseProductListofProduct"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lvCategoryWiseProductListofProduct"
-        android:layout_margin="16sp"/>
+        android:layout_margin="16sp" />
 
     <TextView
         android:layout_width="match_parent"
