@@ -19,6 +19,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -40,11 +42,10 @@ import cz.msebera.android.httpclient.Header;
 
 public class MyProfileActivity extends AppCompatActivity {
 
-    AppCompatButton signout;
+    AppCompatButton btnsignout,btneditProfile;
     GoogleSignInOptions googleSignInOptions;
     GoogleSignInClient googleSignInClient;
-    ImageView profile;
-    Button editProfile;
+    ImageView ivprofile,btnUpdateProfile;
     TextView name,mobNo,email,username;
     
     SharedPreferences preferences;
@@ -60,13 +61,16 @@ public class MyProfileActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(MyProfileActivity.this);
         strUsername = preferences.getString("username","");
         
-        signout = findViewById(R.id.SignOutGoogle);
-        profile = findViewById(R.id.profileImage);
-        editProfile = findViewById(R.id.EditProfile);
+        btnsignout = findViewById(R.id.SignOutGoogle);
+        ivprofile = findViewById(R.id.profileImage);
+        btnUpdateProfile = findViewById(R.id.ivUpdateProfile);
+        btneditProfile = findViewById(R.id.EditProfile);
         name = findViewById(R.id.AccName);
         mobNo = findViewById(R.id.AccMob);
         email = findViewById(R.id.AccEmail);
         username = findViewById(R.id.AccUsername);
+
+
 
 
         googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
@@ -76,7 +80,7 @@ public class MyProfileActivity extends AppCompatActivity {
         if (googleSignInAccount != null)
         {
 
-            signout.setOnClickListener(new View.OnClickListener() {
+            btnsignout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -122,6 +126,7 @@ public class MyProfileActivity extends AppCompatActivity {
                             {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 String strid = jsonObject.getString("id");
+                                String strImage = jsonObject.getString("images");
                                 String strname = jsonObject.getString("name");
                                 String strmobileno = jsonObject.getString("mobile_no");
                                 String stremailid = jsonObject.getString("email_id");
@@ -129,7 +134,33 @@ public class MyProfileActivity extends AppCompatActivity {
 
                                 name.setText(strname);
                                 mobNo.setText(strmobileno);
-                                username.setText(strmobileno);
+                                email.setText(stremailid);
+                                username.setText(strusername);
+
+                                Glide.with(MyProfileActivity.this)
+                                        .load("http://192.168.11.54:80/TataConnnectAPI/images/"+strImage)
+                                        .skipMemoryCache(true)
+                                        .error(R.drawable.imagenotavl)
+                                        .into(ivprofile);
+
+
+                                btnUpdateProfile.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent i = new Intent(MyProfileActivity.this,UpdateProfileActivity.class);
+                                        i.putExtra("name",strname);
+                                        i.putExtra("mobileno",strmobileno);
+                                        i.putExtra("emailid",stremailid);
+                                        i.putExtra("username",strusername);
+
+                                        startActivity(i);
+                                    }
+                                });
+
+
+
+
+
 
                             }
 

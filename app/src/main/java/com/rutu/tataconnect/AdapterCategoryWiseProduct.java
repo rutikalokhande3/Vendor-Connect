@@ -75,7 +75,8 @@ public class AdapterCategoryWiseProduct extends BaseAdapter
         holder.tvProductPrice.setText(obj.getProductprice());
         holder.tvProductOffer.setText(obj.getProductoffer());
 
-        Glide.with(activity).load("http://192.168.108.54:80/TataConnnectAPI/images/"+obj.getProductimage())
+        Glide.with(activity)
+                .load("http://192.168.11.54:80/TataConnnectAPI/images/"+obj.getProductimage())
                 .skipMemoryCache(true)
                 .error(R.drawable.notavbl)
                 .into(holder.ivCategoryWiseProductImage);
