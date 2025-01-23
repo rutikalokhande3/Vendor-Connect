@@ -18,8 +18,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/profileCard"
-            android:layout_width="175dp"
-            android:layout_height="175dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:elevation="10dp"
             app:cardCornerRadius="100dp"
             app:cardElevation="12dp"
@@ -32,48 +32,36 @@
             <!-- Profile Image (Circular) -->
             <ImageView
                 android:id="@+id/profileImage"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
                 android:src="@drawable/icon_person"
-                android:scaleType="fitXY"
                 android:layout_gravity="center_horizontal"
                 android:padding="8dp"/>
 
 
         </androidx.cardview.widget.CardView>
-        <androidx.appcompat.widget.AppCompatButton
+        <Button
             android:id="@+id/EditProfile"
-            android:layout_width="120dp"
-            android:layout_height="65dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Edit Profile"
-            android:backgroundTint="@color/light_pink"
-            android:layout_marginTop="90dp"
-            android:textStyle="bold"
+            android:backgroundTint="@color/red"
+            android:layout_marginTop="80dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="-150dp"/>
-
-
+            android:layout_marginLeft="-140dp"/>
 
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/ivUpdateProfile"
-        android:src="@drawable/icon_edit"
-        android:layout_marginTop="-50dp"
-        android:layout_gravity="end"/>
 
     <!-- Username Text -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardElevation="15dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         app:cardCornerRadius="6dp"
         android:layout_margin="6dp"
         android:layout_gravity="center_horizontal"
-        app:cardBackgroundColor="@color/white">
+        app:cardBackgroundColor="@color/pink2">
 
         <TextView
             android:id="@+id/tvTitle"
@@ -84,8 +72,8 @@
             android:textSize="28sp"
             android:textStyle="bold"
             android:gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:fontFamily="sans-serif"
+            android:layout_marginTop="40dp"
+            android:fontFamily="sans-serif-condensed"
             android:layout_gravity="center_horizontal"/>
 
 
@@ -93,18 +81,16 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="100dp">
+            android:layout_marginTop="120dp">
 
             <TextView
                 android:id="@+id/AccName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="95dp"
                 android:drawableLeft="@drawable/icon_person"
                 android:drawablePadding="20dp"
                 android:hint="Name"
-                android:textSize="18dp"
-                android:background="@drawable/et_bg_shape"
                 android:layout_margin="20dp"
                 android:textColor="@color/black"
                 android:inputType="text"
@@ -117,7 +103,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="170dp">
+            android:layout_marginTop="175dp">
 
             <TextView
                 android:id="@+id/AccMob"
@@ -127,8 +113,6 @@
                 android:drawableLeft="@drawable/icon_phone"
                 android:drawablePadding="20dp"
                 android:hint="Mobile"
-                android:textSize="18dp"
-                android:background="@drawable/et_bg_shape"
                 android:layout_margin="20dp"
                 android:textColor="@color/black"
                 android:inputType="text"
@@ -141,7 +125,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="240dp">
+            android:layout_marginTop="230dp">
 
             <TextView
                 android:id="@+id/AccEmail"
@@ -151,8 +135,6 @@
                 android:drawableLeft="@drawable/icon_email"
                 android:drawablePadding="20dp"
                 android:hint="Email"
-                android:textSize="18dp"
-                android:background="@drawable/et_bg_shape"
                 android:layout_margin="20dp"
                 android:textColor="@color/black"
                 android:inputType="number"
@@ -165,19 +147,17 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="310dp">
+            android:layout_marginTop="280dp">
 
             <TextView
                 android:id="@+id/AccUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
-                android:drawableLeft="@drawable/icon_user"
+                android:drawableLeft="@drawable/icon_email"
                 android:drawablePadding="20dp"
                 android:hint="Username"
-                android:background="@drawable/et_bg_shape"
                 android:layout_margin="20dp"
-                android:textSize="18dp"
                 android:textColor="@color/black"
                 android:inputType="textEmailAddress"
                 android:padding="16dp"
@@ -205,8 +185,6 @@
 
 
     </androidx.cardview.widget.CardView>
-
-
 
 
 

@@ -71,7 +71,7 @@ public class AdapterGetAllCategoryDetails extends BaseAdapter {
         final POJOGetAllCategory obj = pojoGetAllCategories.get(position);
         holder.tvCategoryName.setText(obj.getCategoryName());
 
-        Glide.with(activity).load("http://192.168.98.54:80/TataConnnectAPI/images/"+obj.getCategoryImage())
+        Glide.with(activity).load("http://192.168.11.54:80/TataConnnectAPI/images/"+obj.getCategoryImage())
                 .skipMemoryCache(true)
                 .error(R.drawable.notavbl)
                 .into(holder.ivCategoryImage);
