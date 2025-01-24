@@ -1,9 +1,11 @@
 package com.rutu.tataconnect;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +19,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.rutu.tataconnect.Common.Urls;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
@@ -84,11 +87,33 @@ public class UpdateProfileActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
+
+                try {
+                    String status  = response.getString("success");
+
+                    if(status.equals("1"))
+                    {
+                        progressDialog.dismiss();
+                        Toast.makeText(UpdateProfileActivity.this,"Profile Update Successfully",Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(UpdateProfileActivity.this,MyProfileActivity.class);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        progressDialog.dismiss();
+                        Toast.makeText(UpdateProfileActivity.this,"Update Not Done ",Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
+                progressDialog.dismiss();
+                Toast.makeText(UpdateProfileActivity.this,"Server Error",Toast.LENGTH_SHORT).show();
             }
         });
 

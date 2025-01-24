@@ -34,6 +34,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.rutu.tataconnect.Common.NetworkChangeListener;
 import com.rutu.tataconnect.Common.Urls;
+import com.rutu.tataconnect.admin.AdminHomeActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -189,7 +190,9 @@ public class LoginActivity extends AppCompatActivity
                       try
                       {
                           String status = response.getString("success");
-                          if(status.equals("1"))
+                          String strUserrole = response.getString("userrole");
+
+                          if(status.equals("1") && strUserrole.equals("user"))
                           {
                               progressDialog.dismiss();
                               Intent i =  new Intent(LoginActivity.this,HomeActivity.class);
@@ -197,9 +200,13 @@ public class LoginActivity extends AppCompatActivity
                               startActivity(i);
                               Toast.makeText(LoginActivity.this,"Login Successfully",Toast.LENGTH_SHORT)
                                       .show();
-                              finish();
-                          }
-                          else
+                             // finish();
+                          } else if (status.equals("1") && strUserrole.equals("admin")) {
+                              Intent i =  new Intent(LoginActivity.this, AdminHomeActivity.class);
+                              startActivity(i);
+                             // finish();
+
+                          } else 
                           {
                               Toast.makeText(LoginActivity.this,"Invalid Username or Password",Toast.LENGTH_SHORT).show();
                           }
@@ -218,18 +225,6 @@ public class LoginActivity extends AppCompatActivity
                         Toast.makeText(LoginActivity.this,"Server Error",Toast.LENGTH_SHORT).show();
                     }
                 }
-
-
         );
-
-
-
-
-
-
-
-
-
-
     }
 }
