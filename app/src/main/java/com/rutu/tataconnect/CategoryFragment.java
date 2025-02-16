@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.rutu.tataconnect.Common.Urls;
+import com.rutu.tataconnect.admin.AdapterClass.AdapterGetAllCategoryRV;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,11 +33,11 @@ import cz.msebera.android.httpclient.Header;
 public class CategoryFragment extends Fragment {
 
     SearchView searchCategory;
-    ListView lvMultipleCategory;
+    RecyclerView rvMultipleCategory;
     TextView tvNoCategory;
 
     List<POJOGetAllCategory> pojoGetAllCategories;
-    AdapterGetAllCategoryDetails adapterGetAllCategoryDetails;
+    AdapterGetAllCategoryRV adapterGetAllCategoryRV;
 
 
     @Override
@@ -45,47 +48,45 @@ public class CategoryFragment extends Fragment {
 
         pojoGetAllCategories = new ArrayList<>();
         searchCategory = view.findViewById(R.id.svCategoryFragment);
-        lvMultipleCategory = view.findViewById(R.id.lvCategoryFragmentMultipltCategory);
+        rvMultipleCategory = view.findViewById(R.id.rvCategoryFragmentMultipltCategory);
         tvNoCategory = view.findViewById(R.id.tvNoCategory);
 
 
-searchCategory.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        searchCategory(query);
-        return false;
-    }
+        searchCategory.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchCategory(query);
+                return false;
+            }
 
-    @Override
-    public boolean onQueryTextChange(String query) {
-        searchCategory(query);
-        return false;
-    }
-});
+            @Override
+            public boolean onQueryTextChange(String query) {
+                searchCategory(query);
+                return false;
+            }
+        });
         getAllCategory();
 
         return view;
     }
 
-    private void searchCategory(String query)
-    {
-        List<POJOGetAllCategory> tempCategory =new ArrayList<>();
+    private void searchCategory(String query) {
+        List<POJOGetAllCategory> tempCategory = new ArrayList<>();
         tempCategory.clear();
 
-        for (POJOGetAllCategory obj:pojoGetAllCategories)
-        {
-            if(obj.getCategoryName().toUpperCase().contains(query.toUpperCase()))
-            {
+        for (POJOGetAllCategory obj : pojoGetAllCategories) {
+            if (obj.getCategoryName().toUpperCase().contains(query.toUpperCase())) {
                 tempCategory.add(obj);
-            }
-            else
-            {
+            } else {
                 tvNoCategory.setVisibility(View.VISIBLE);
             }
 
-            adapterGetAllCategoryDetails = new AdapterGetAllCategoryDetails(tempCategory,
+            adapterGetAllCategoryRV = new AdapterGetAllCategoryRV(tempCategory,
                     getActivity());
-            lvMultipleCategory.setAdapter(adapterGetAllCategoryDetails);
+            rvMultipleCategory.setAdapter(adapterGetAllCategoryRV);
+
+            rvMultipleCategory.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+            pojoGetAllCategories = new ArrayList<>();
 
 
         }
@@ -97,44 +98,45 @@ searchCategory.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
         RequestParams params = new RequestParams();
 
         asyncHttpClient.post(Urls.getAllCategoryDetailsWebService,
-                                  params,
-                                  new JsonHttpResponseHandler(){
-                                      @Override
-                                      public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                                          super.onSuccess(statusCode, headers, response);
+                params,
+                new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        super.onSuccess(statusCode, headers, response);
 
-                                          try {
-                                              JSONArray jsonArray = response.getJSONArray("getAllCategory");
-                                              if (jsonArray.isNull(0))
-                                              {
-                                                  tvNoCategory.setVisibility(View.VISIBLE);
-                                              }
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("getAllCategory");
+                            if (jsonArray.isNull(0)) {
+                                tvNoCategory.setVisibility(View.VISIBLE);
+                            }
 
-                                              for (int i=0;i<jsonArray.length();i++)
-                                              {
-                                                  JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                                  String strId = jsonObject.getString("id");
-                                                  String strCategoryImage = jsonObject.getString("categoryimage");
-                                                  String strCategoryName = jsonObject.getString("categoryname");
-                                                  pojoGetAllCategories.add(new POJOGetAllCategory(strId,strCategoryImage,strCategoryName));
-                                              }
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String strId = jsonObject.getString("id");
+                                String strCategoryImage = jsonObject.getString("categoryimage");
+                                String strCategoryName = jsonObject.getString("categoryname");
+                                pojoGetAllCategories.add(new POJOGetAllCategory(strId, strCategoryImage, strCategoryName));
+                            }
 
-                                              adapterGetAllCategoryDetails = new AdapterGetAllCategoryDetails(pojoGetAllCategories,
-                                                                            getActivity());
-                                              lvMultipleCategory.setAdapter(adapterGetAllCategoryDetails);
+                            adapterGetAllCategoryRV = new AdapterGetAllCategoryRV(pojoGetAllCategories,
+                                    getActivity());
+                            rvMultipleCategory.setAdapter(adapterGetAllCategoryRV);
 
-                                          } catch (JSONException e) {
-                                              throw new RuntimeException(e);
-                                          }
+                            rvMultipleCategory.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+                            pojoGetAllCategories = new ArrayList<>();
 
-                                      }
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
 
-                                      @Override
-                                      public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                                          super.onFailure(statusCode, headers, throwable, errorResponse);
-                                          Toast.makeText(getActivity(),"Server Error",Toast.LENGTH_SHORT).show();
-                                      }
-                                  });
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        super.onFailure(statusCode, headers, throwable, errorResponse);
+                        Toast.makeText(getActivity(), "Server Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
     }
 }

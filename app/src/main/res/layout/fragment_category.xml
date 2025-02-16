@@ -15,13 +15,14 @@
         app:queryHint="Search By Category"
         app:iconifiedByDefault="false"
         android:layout_margin="16sp"
-        android:padding="8sp" />
+        android:background="@drawable/et_bg_shape"
+        android:padding="3sp" />
 
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lvCategoryFragmentMultipltCategory"/>
+        android:id="@+id/rvCategoryFragmentMultipltCategory"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -33,10 +34,5 @@
         android:textSize="16sp"
         android:fontFamily="sans-serif-condensed-medium"
         android:visibility="gone"/>
-
-
-
-
-
 
 </LinearLayout>

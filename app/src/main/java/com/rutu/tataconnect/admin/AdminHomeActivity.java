@@ -1,11 +1,14 @@
 package com.rutu.tataconnect.admin;
 
 import android.app.DownloadManager;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -38,6 +41,8 @@ public class AdminHomeActivity extends AppCompatActivity {
     List<POJOGetAllCategory> pojoGetAllCategories;
     AdapterGetAllCategoryRV adapterGetAllCategoryRV;
 
+    CardView cvAllCustomerLocationInMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +53,16 @@ public class AdminHomeActivity extends AppCompatActivity {
         rvGetAllCategory = findViewById(R.id.rvCategoryWiseProductListofProduct);
         rvGetAllCategory.setLayoutManager(new GridLayoutManager(AdminHomeActivity.this,2,
                 GridLayoutManager.HORIZONTAL,false));
+
+        cvAllCustomerLocationInMap = findViewById(R.id.cvAdminHomeCustomerLocation);
+
+        cvAllCustomerLocationInMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminHomeActivity.this, ViewAllCustomerLocationInMapActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         pojoGetAllCategories = new ArrayList<>();

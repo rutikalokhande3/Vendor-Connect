@@ -21,9 +21,47 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCategoryWiseProductListofProduct"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16sp" />
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:scrollbars="horizontal" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cvAdminHomeCustomerLocation"
+        app:cardBackgroundColor="@color/pink1"
+        app:cardMaxElevation="16sp"
+        app:cardCornerRadius="16sp"
+        android:layout_margin="16sp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16sp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvCustomerLocation"
+                android:text="View All Customer Location in Map"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-condensed"
+                android:drawableLeft="@drawable/map"
+                android:drawablePadding="10dp"/>
+
+
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
 
     <TextView
         android:layout_width="match_parent"

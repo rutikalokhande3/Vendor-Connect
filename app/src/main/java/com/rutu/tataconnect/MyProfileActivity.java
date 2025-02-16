@@ -138,7 +138,7 @@ public class MyProfileActivity extends AppCompatActivity {
                                 username.setText(strusername);
 
                                 Glide.with(MyProfileActivity.this)
-                                        .load("http://192.168.11.54:80/TataConnnectAPI/images/"+strImage)
+                                        .load("http://192.168.1.39:80/TataConnnectAPI/images/"+strImage)
                                         .skipMemoryCache(true)
                                         .error(R.drawable.imagenotavl)
                                         .into(ivprofile);
@@ -156,12 +156,6 @@ public class MyProfileActivity extends AppCompatActivity {
                                         startActivity(i);
                                     }
                                 });
-
-
-
-
-
-
                             }
 
 

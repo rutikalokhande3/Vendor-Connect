@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -42,14 +43,14 @@ public class AdapterGetAllCategoryRV  extends  RecyclerView.Adapter<AdapterGetAl
          POJOGetAllCategory obj = pojoGetAllCategories.get(position);
          viewHolder.tvCategoryName.setText(obj.getCategoryName());
 
-        Glide.with(activity).load("http://192.168.15.54:80/TataConnnectAPI/images/"+obj.getCategoryImage())
+        Glide.with(activity).load("http://192.168.1.39:80/TataConnnectAPI/images/"+obj.getCategoryImage())
                 .skipMemoryCache(false)
                 .error(R.drawable.imagenotavl)
                 .into(viewHolder.ivCategoryImage);
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()  {
         return pojoGetAllCategories.size();
     }
 
@@ -57,10 +58,11 @@ public class AdapterGetAllCategoryRV  extends  RecyclerView.Adapter<AdapterGetAl
 
         ImageView ivCategoryImage;
         TextView tvCategoryName;
+        CardView cvCardList;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-
+            cvCardList = itemView.findViewById(R.id.cvCategoryList);
             ivCategoryImage = itemView.findViewById(R.id.ivcategoryimage);
             tvCategoryName = itemView.findViewById(R.id.tvCategoryName);
         }
