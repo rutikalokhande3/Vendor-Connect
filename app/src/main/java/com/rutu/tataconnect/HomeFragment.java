@@ -1,8 +1,10 @@
 
 package com.rutu.tataconnect;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -17,6 +19,8 @@ public class HomeFragment extends Fragment {
 
     TextView marqueeText;
 
+    CardView cdmxplyr;
+
 
 
     private Object AnimationTypes;
@@ -28,6 +32,19 @@ public class HomeFragment extends Fragment {
          View view = inflater.inflate(R.layout.fragment_home, container, false);
          marqueeText = view.findViewById(R.id.marqueeText);
         marqueeText.setSelected(true);
+
+/*
+        cdmxplyr = view.findViewById(R.id.cdMXPlayer);
+
+        cdmxplyr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),MusicFragment.class);
+                startActivity(i);
+            }
+        });
+
+*/
 
 
 

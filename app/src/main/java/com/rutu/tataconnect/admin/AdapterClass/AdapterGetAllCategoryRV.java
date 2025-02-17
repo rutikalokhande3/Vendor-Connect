@@ -43,7 +43,7 @@ public class AdapterGetAllCategoryRV  extends  RecyclerView.Adapter<AdapterGetAl
          POJOGetAllCategory obj = pojoGetAllCategories.get(position);
          viewHolder.tvCategoryName.setText(obj.getCategoryName());
 
-        Glide.with(activity).load("http://192.168.1.39:80/TataConnnectAPI/images/"+obj.getCategoryImage())
+        Glide.with(activity).load("http://192.168.155.54:80/TataConnnectAPI/images/"+obj.getCategoryImage())
                 .skipMemoryCache(false)
                 .error(R.drawable.imagenotavl)
                 .into(viewHolder.ivCategoryImage);

@@ -34,7 +34,13 @@
     <color name="golden">#000022</color>
     <color name="purple">#7B53F8</color>
     <color name="gray">#808080</color>
-    <color name="background">#F9F9F9</color>
+    <color name="amazon1">#F9F9F9</color>
+    <color name="amazon2">#FF99CC</color>
+    <color name="amazon3">#85C1E9</color>
+    <color name="amazon4">#a3ccc4</color>
+    <color name="amazon5">#fccbf4</color>
+    <color name="amazon6">#F2E1C3</color>
+
 
 
 </resources>

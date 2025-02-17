@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:id="@+id/FrameLayout"
         android:layout_above="@+id/homeFrameLayout"
-        android:layout_weight="95"/>
+        android:layout_weight="97"/>
     
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
@@ -25,9 +25,14 @@
         app:menu="@menu/home_bottom_navigation"
         android:layout_alignParentBottom="true"
         android:backgroundTintMode="screen"
-        app:itemIconTint="@color/red"
-        android:layout_weight="5"
+        app:itemIconTint="@color/black"
+        android:layout_weight="3"
         android:layout_marginBottom="-25dp"
-        tools:ignore="BottomAppBar" />
+        tools:ignore="BottomAppBar"
+        app:itemBackground="@color/white"
+        app:itemTextColor="@color/blue"
+        app:itemIconSize="25dp" />
+
+
 
 </LinearLayout>

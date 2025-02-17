@@ -94,7 +94,7 @@ public class CategoryWiseProductActivity extends AppCompatActivity {
 
         params.put("categoryname",strCategoryName);
 
-        client.post("http://192.168.1.39:80/TataConnnectAPI/categoryWiseProduct.php",params,new
+        client.post("http://192.168.155.54:80/TataConnnectAPI/categoryWiseProduct.php",params,new
                 JsonHttpResponseHandler(){
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
