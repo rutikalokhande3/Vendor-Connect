@@ -31,7 +31,7 @@
 
             <!-- Profile Image (Circular) -->
             <ImageView
-                android:id="@+id/profileImage"
+                android:id="@+id/ivAllCustomerProfileImage"
                 android:layout_width="200dp"
                 android:layout_height="240dp"
                 android:src="@drawable/icon_person"
@@ -42,6 +42,17 @@
 
 
         </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Delete User"
+            android:id="@+id/btnAllCustomerDeleteUser"
+            android:layout_marginTop="190dp"
+            android:background="@color/yellow"
+            android:layout_marginLeft="-180dp"/>
+
+
 
 
 
@@ -71,12 +82,12 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Account"
+            android:text="Customer Details"
             android:textColor="@color/blue2"
             android:textSize="28sp"
             android:textStyle="bold"
             android:gravity="center_horizontal"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="0dp"
             android:fontFamily="sans-serif"
             android:layout_gravity="center_horizontal"/>
 
@@ -85,10 +96,10 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="100dp">
+            android:layout_marginTop="30dp">
 
             <TextView
-                android:id="@+id/AccName"
+                android:id="@+id/tvAllCustomerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -109,10 +120,10 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="170dp">
+            android:layout_marginTop="100dp">
 
             <TextView
-                android:id="@+id/AccMob"
+                android:id="@+id/tvAllCustomerMobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
@@ -133,10 +144,10 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="240dp">
+            android:layout_marginTop="170dp">
 
             <TextView
-                android:id="@+id/AccEmail"
+                android:id="@+id/tvAllCustomerEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="93dp"
@@ -157,10 +168,34 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="240dp">
+
+            <TextView
+                android:id="@+id/tvAllCustomerAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:drawableLeft="@drawable/icon_user"
+                android:drawablePadding="20dp"
+                android:hint="Address"
+                android:background="@drawable/et_bg_shape"
+                android:layout_margin="20dp"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:inputType="textEmailAddress"
+                android:padding="16dp"
+                android:textColorHint="@color/grey" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="310dp">
 
             <TextView
-                android:id="@+id/AccUsername"
+                android:id="@+id/tvAllCustomerUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"

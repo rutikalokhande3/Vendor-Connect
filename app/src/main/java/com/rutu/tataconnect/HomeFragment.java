@@ -11,15 +11,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.rutu.tataconnect.Common.Urls;
+import com.rutu.tataconnect.admin.AdapterClass.AdapterGetAllCategoryRV;
+import com.rutu.tataconnect.admin.AdminHomeActivity;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class HomeFragment extends Fragment {
 
     TextView marqueeText;
+    List<POJOGetAllCategory> pojoGetAllCategories;
+    AdapterGetAllCategoryRV adapterGetAllCategoryRV;
 
-    CardView cdmxplyr;
+    CardView cdmxplyr,cvAllCustomerLocationInMap;
 
 
 
@@ -33,18 +51,17 @@ public class HomeFragment extends Fragment {
          marqueeText = view.findViewById(R.id.marqueeText);
         marqueeText.setSelected(true);
 
-/*
-        cdmxplyr = view.findViewById(R.id.cdMXPlayer);
+        cvAllCustomerLocationInMap = view.findViewById(R.id.cvAdminHomeCustomerLocation);
 
-        cdmxplyr.setOnClickListener(new View.OnClickListener() {
+
+        cvAllCustomerLocationInMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(),MusicFragment.class);
-                startActivity(i);
+                Intent intent = new Intent(getActivity(), ViewAllCustomerLocationInMapActivity.class);
+                startActivity(intent);
             }
         });
 
-*/
 
 
 
@@ -52,4 +69,8 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
+
+
+
+    
 }

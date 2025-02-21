@@ -1,4 +1,4 @@
-package com.rutu.tataconnect.admin;
+package com.rutu.tataconnect;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -20,17 +20,29 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.CancellationToken;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.OnTokenCanceledListener;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.rutu.tataconnect.Common.Urls;
 import com.rutu.tataconnect.R;
 import com.rutu.tataconnect.databinding.ActivityViewAllCustomerLocationInMapBinding;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 public class ViewAllCustomerLocationInMapActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -49,8 +61,8 @@ public class ViewAllCustomerLocationInMapActivity extends FragmentActivity imple
 
         if (ActivityCompat.checkSelfPermission(ViewAllCustomerLocationInMapActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-        ActivityCompat.checkSelfPermission(ViewAllCustomerLocationInMapActivity.this,
-                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+                ActivityCompat.checkSelfPermission(ViewAllCustomerLocationInMapActivity.this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(ViewAllCustomerLocationInMapActivity.this,
                     new String[]{
@@ -101,7 +113,7 @@ public class ViewAllCustomerLocationInMapActivity extends FragmentActivity imple
                     mMap.addMarker(new MarkerOptions().position(currentlocation).title(address));
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentlocation,16),
                             5000,null);
-                    Toast.makeText(ViewAllCustomerLocationInMapActivity.this, "", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ViewAllCustomerLocationInMapActivity.this, "Server", Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -121,7 +133,54 @@ public class ViewAllCustomerLocationInMapActivity extends FragmentActivity imple
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+       getAllCustomerLocation();
 
+
+    }
+
+    private void getAllCustomerLocation() {
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+
+        client.post(Urls.getAllCustomerLocationWebService,params,
+                new JsonHttpResponseHandler(){
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        super.onSuccess(statusCode, headers, response);
+
+                        try {
+                            JSONArray jsonArray = response.getJSONArray("getCustomerCurrentLocation");
+
+                             for (int i = 0; i<jsonArray.length();i++)
+                             {
+                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                 String strid = jsonObject.getString("id");
+                                 String strName = jsonObject.getString("name");
+                                 Double strLatitude = Double.parseDouble(jsonObject.getString("latitude"));
+                                 Double strLongitude = Double.parseDouble(jsonObject.getString("longitude"));
+                                 String strAddress = jsonObject.getString("address");
+                                 String strUsername = jsonObject.getString("username");
+
+
+                                 LatLng customerLocation = new LatLng(strLatitude,strLongitude);
+                                 MarkerOptions markerOptions = new MarkerOptions();
+                                 markerOptions.position(customerLocation).title(strAddress);
+                                 markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.userlocation));
+                                 mMap.addMarker(markerOptions);
+
+
+                             }
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        super.onFailure(statusCode, headers, throwable, errorResponse);
+                        Toast.makeText(ViewAllCustomerLocationInMapActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

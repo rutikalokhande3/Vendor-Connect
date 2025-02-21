@@ -25,6 +25,8 @@ import com.android.volley.toolbox.Volley;
 import com.rutu.tataconnect.Common.Urls;
 import com.rutu.tataconnect.POJOGetAllCategory;
 import com.rutu.tataconnect.R;
+import com.rutu.tataconnect.ViewAllCustomerActivity;
+import com.rutu.tataconnect.ViewAllCustomerLocationInMapActivity;
 import com.rutu.tataconnect.admin.AdapterClass.AdapterGetAllCategoryRV;
 
 import org.json.JSONArray;
@@ -41,7 +43,7 @@ public class AdminHomeActivity extends AppCompatActivity {
     List<POJOGetAllCategory> pojoGetAllCategories;
     AdapterGetAllCategoryRV adapterGetAllCategoryRV;
 
-    CardView cvAllCustomerLocationInMap;
+    CardView cvAllCustomerLocationInMap,cvAllCustomerDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +57,24 @@ public class AdminHomeActivity extends AppCompatActivity {
                 GridLayoutManager.HORIZONTAL,false));
 
         cvAllCustomerLocationInMap = findViewById(R.id.cvAdminHomeCustomerLocation);
+        cvAllCustomerDetails = findViewById(R.id.cvAdminHomeCustomerDetails);
+
+
+
+
 
         cvAllCustomerLocationInMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminHomeActivity.this, ViewAllCustomerLocationInMapActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cvAllCustomerDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminHomeActivity.this, ViewAllCustomerActivity.class);
                 startActivity(intent);
             }
         });

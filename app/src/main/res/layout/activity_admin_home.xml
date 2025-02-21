@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".admin.AdminHomeActivity"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.SearchView
@@ -52,6 +53,41 @@
                 android:textColor="@color/black"
                 android:fontFamily="sans-serif-condensed"
                 android:drawableLeft="@drawable/map"
+                android:drawablePadding="10dp"/>
+
+
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cvAdminHomeCustomerDetails"
+        app:cardBackgroundColor="@color/timber0"
+        app:cardMaxElevation="16sp"
+        app:cardCornerRadius="16sp"
+        android:layout_margin="16sp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16sp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvCustomerDetails"
+                android:text="View All Customer Location in Map"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-condensed"
+                android:drawableLeft="@drawable/user_circle_icon"
                 android:drawablePadding="10dp"/>
 
 

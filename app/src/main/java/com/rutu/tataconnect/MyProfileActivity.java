@@ -64,7 +64,7 @@ public class MyProfileActivity extends AppCompatActivity {
         btnsignout = findViewById(R.id.SignOutGoogle);
         ivprofile = findViewById(R.id.profileImage);
         btnUpdateProfile = findViewById(R.id.ivUpdateProfile);
-        btneditProfile = findViewById(R.id.EditProfile);
+       // btneditProfile = findViewById(R.id.EditProfile);
         name = findViewById(R.id.AccName);
         mobNo = findViewById(R.id.AccMob);
         email = findViewById(R.id.AccEmail);
@@ -138,9 +138,9 @@ public class MyProfileActivity extends AppCompatActivity {
                                 username.setText(strusername);
 
                                 Glide.with(MyProfileActivity.this)
-                                        .load("http://192.168.155.54:80/TataConnnectAPI/images/"+strImage)
+                                        .load("http://192.168.1.38:80/TataConnnectAPI/images/"+strImage)
                                         .skipMemoryCache(true)
-                                        .error(R.drawable.imagenotavl)
+                                        .error(R.drawable.profile)
                                         .into(ivprofile);
 
 
