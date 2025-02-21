@@ -13,5 +13,7 @@ public class Urls {
 
     public static String getAllCustomerLocationWebService = webServiceAddress+"getAllCustomerLocation.php";
     public static String getGetAllCustomerDetailsWebService = webServiceAddress+"getAllCustomerDetails.php";
+    public static String deleteUserWebService = webServiceAddress+"deleteUser.php";
+
 
 }
