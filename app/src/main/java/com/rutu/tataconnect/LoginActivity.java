@@ -44,7 +44,6 @@ import cz.msebera.android.httpclient.Header;
 public class LoginActivity extends AppCompatActivity
 {
     
-    
     ImageView ivlogo;
 
     EditText username,password;

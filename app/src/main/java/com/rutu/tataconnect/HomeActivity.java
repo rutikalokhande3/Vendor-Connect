@@ -46,8 +46,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
             welcome();
         }
 
-
-
     }
 
 
@@ -61,7 +59,11 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.Whishlist)
+        if(item .getItemId()==R.id.QRCode){
+           Intent intent = new Intent(HomeActivity.this,QRCodeActivity.class);
+           startActivity(intent);
+        }
+        else if (item.getItemId() == R.id.Whishlist)
         {
 
         } else if (item.getItemId() == R.id.MyOffers) {
