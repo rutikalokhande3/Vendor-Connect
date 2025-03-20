@@ -5,20 +5,26 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -35,6 +41,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import cz.msebera.android.httpclient.Header;
@@ -56,6 +63,12 @@ public class RegistrationActivity extends AppCompatActivity {
 
     Button btnRgs;
     NetworkChangeListener networkChangeListener = new NetworkChangeListener();
+
+    ImageView ivProfilePhoto;
+    AppCompatButton acbtnAddProfilePhoto;
+     private int PICK_IMAGE_REQUEST = 1;
+     Bitmap bitmap;
+     Uri filepath;
 
 
     //@SuppressLint({"MissingInflatedId", "WrongViewCast"})
@@ -89,6 +102,17 @@ public class RegistrationActivity extends AppCompatActivity {
         username = findViewById(R.id.loginUsername);
         password = findViewById(R.id.loginPassword);
         btnRgs = findViewById(R.id.RgsBtn);
+
+        ivProfilePhoto = findViewById(R.id.ivRegisterProfilePhoto);
+        acbtnAddProfilePhoto = findViewById(R.id.acbtnRegistrationAddProfilePhoto);
+
+        acbtnAddProfilePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFileChooser();
+            }
+
+        });
 
 
         btnRgs.setOnClickListener(new View.OnClickListener() {
@@ -156,6 +180,29 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void showFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,"Select Profile Photo"),PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==PICK_IMAGE_REQUEST && resultCode==RESULT_OK && data!=null)
+        {
+            filepath = data.getData();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),filepath);
+                ivProfilePhoto.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @Override

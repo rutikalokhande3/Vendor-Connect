@@ -3,10 +3,14 @@ package com.rutu.tataconnect.admin;
 import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
@@ -23,7 +27,9 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.rutu.tataconnect.Common.Urls;
+import com.rutu.tataconnect.HomeActivity;
 import com.rutu.tataconnect.POJOGetAllCategory;
+import com.rutu.tataconnect.QRCodeActivity;
 import com.rutu.tataconnect.R;
 import com.rutu.tataconnect.ViewAllCustomerActivity;
 import com.rutu.tataconnect.ViewAllCustomerLocationInMapActivity;
@@ -129,5 +135,21 @@ public class AdminHomeActivity extends AppCompatActivity {
 
         requestQueue.add(stringRequest);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.home_menu_admin,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.homeMenuAdminScanQRCode) {
+            Intent intent = new Intent(AdminHomeActivity.this, ScanQRCodeActivity.class);
+            startActivity(intent);
+        }
+        return true;
     }
 }

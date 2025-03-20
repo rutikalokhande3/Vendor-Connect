@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,6 +14,7 @@
     tools:context=".RegistrationActivity"
     android:background="@color/blue2"
     android:orientation="vertical">
+
 
    <androidx.cardview.widget.CardView
        android:layout_width="150dp"
@@ -66,18 +72,35 @@
           android:fontFamily="sans-serif-condensed"
           android:layout_gravity="center_horizontal"/>
 
+      <ImageView
+          android:layout_width="250dp"
+          android:layout_height="250dp"
+          android:id="@+id/ivRegisterProfilePhoto"
+          android:src="@drawable/baseline_qr_code"
+          android:layout_gravity="center_horizontal"
+          android:layout_marginTop="18sp"/>
 
+      <androidx.appcompat.widget.AppCompatButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/acbtnRegistrationAddProfilePhoto"
+          android:text="Add Profile Photo"
+          android:textColor="@color/black"
+          android:textStyle="bold"
+          android:backgroundTint="@color/yellow"
+          android:layout_gravity="center_horizontal"
+          android:layout_marginTop="300sp"/>
 
       <com.google.android.material.textfield.TextInputLayout
           android:layout_width="match_parent"
           android:layout_height="60dp"
-          android:layout_marginTop="60dp">
+          android:layout_marginTop="350dp">
 
           <androidx.appcompat.widget.AppCompatEditText
               android:id="@+id/RgsCountry"
               android:layout_width="match_parent"
               android:layout_height="55dp"
-              android:layout_marginTop="95dp"
+              android:layout_marginTop="250dp"
               android:drawableLeft="@drawable/icon_earth"
               android:drawablePadding="20dp"
               android:hint="Country"
@@ -87,13 +110,12 @@
               android:padding="16dp"
               android:textColorHint="@color/grey" />
 
-
       </com.google.android.material.textfield.TextInputLayout>
 
       <com.google.android.material.textfield.TextInputLayout
           android:layout_width="match_parent"
           android:layout_height="60dp"
-          android:layout_marginTop="123dp">
+          android:layout_marginTop="400dp">
 
           <androidx.appcompat.widget.AppCompatEditText
               android:id="@+id/RgsName"
@@ -115,7 +137,7 @@
       <com.google.android.material.textfield.TextInputLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:layout_marginTop="185dp">
+          android:layout_marginTop="450dp">
 
           <androidx.appcompat.widget.AppCompatEditText
               android:id="@+id/RgsMbNo"
@@ -137,7 +159,7 @@
       <com.google.android.material.textfield.TextInputLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:layout_marginTop="250dp">
+          android:layout_marginTop="500dp">
 
           <androidx.appcompat.widget.AppCompatEditText
               android:id="@+id/RgsEmail"
@@ -159,7 +181,7 @@
       <com.google.android.material.textfield.TextInputLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:layout_marginTop="313dp">
+          android:layout_marginTop="550dp">
 
           <androidx.appcompat.widget.AppCompatEditText
               android:id="@+id/loginUsername"
@@ -182,7 +204,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           app:passwordToggleEnabled="true"
-          android:layout_marginTop="380dp"
+          android:layout_marginTop="600dp"
           app:passwordToggleTint="@color/black">
 
           <androidx.appcompat.widget.AppCompatEditText
@@ -208,7 +230,7 @@
           android:layout_gravity="center_horizontal"
           android:backgroundTint="@color/yellow"
           android:text="Sign UP"
-          android:layout_marginTop="540dp"
+          android:layout_marginTop="700dp"
           android:textColor="@color/black"
           android:textStyle="bold" />
 
@@ -231,3 +253,4 @@
 
 
 </LinearLayout>
+</ScrollView>
